@@ -2,7 +2,7 @@ from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from routes import transactions as transactions_API
-from routes import categories as categories_API
+from routes import transaction_categories as categories_API
 
 app = FastAPI()
 
