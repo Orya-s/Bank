@@ -1,6 +1,6 @@
 from pymysql import IntegrityError
-from models import tranactions as Transactions
-from models import categories as Categories
+from models import transactions as Transactions
+from models import transaction_categories as Categories
 from fastapi import status, APIRouter, Request
 from fastapi.responses import JSONResponse
 
@@ -33,7 +33,7 @@ async def add_transaction(request: Request):
 @router.delete('/{id}')
 def delete_transaction(id):
     try:
-        Transactions.delete_transaction(id)
+        Transactions.delete(id)
         return JSONResponse({"deleted": "true"})
     except Transactions.ElementNotExistError as e:
         return JSONResponse({"Error": "Transaction does not exist"},
