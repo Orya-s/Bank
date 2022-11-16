@@ -1,6 +1,6 @@
 from fastapi import status, APIRouter
 from fastapi.responses import JSONResponse
-from models import categories as Categories
+from models import transaction_categories as Categories
 
 router = APIRouter()
 
