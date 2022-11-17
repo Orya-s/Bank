@@ -1,6 +1,5 @@
 from pymysql import IntegrityError
 from models import transactions as Transactions
-from models import transaction_categories as Categories
 from fastapi import status, APIRouter, Request
 from fastapi.responses import JSONResponse
 
