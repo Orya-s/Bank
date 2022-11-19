@@ -26,8 +26,12 @@ def add(transaction):
     with connection.cursor() as cursor:
         cursor.execute(insert_query)
         connection.commit()
-
-
+        
+        new_id = cursor.lastrowid
+        transaction["id"] = new_id
+        return transaction
+        
+    
 def delete(id):
     query = "DELETE FROM transactions where id={}".format(id)
     with connection.cursor() as cursor:
@@ -39,6 +43,16 @@ def delete(id):
             raise ElementNotExistError()
         
         
+def get_balance():
+    query = "SELECT SUM(amount) as balance FROM transactions"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        return cursor.fetchone()
+        # balance = cursor.fetchone()['balance'] 
+        # if balance == None: 
+        #     return 0
+        # return balance
+
 
 class ElementNotExistError(Exception):
     pass

@@ -7,7 +7,7 @@ router = APIRouter(
     prefix="/transactions"
 )
 
-@router.get('/')
+@router.get('')
 def get_all_transactions():
     try:
         transactions = Transactions.get_all()
@@ -33,9 +33,18 @@ async def add_transaction(request: Request):
 def delete_transaction(id):
     try:
         Transactions.delete(id)
-        return JSONResponse({"deleted": "true"})
+        return JSONResponse({"deleted": "true"}, status_code=status.HTTP_202_ACCEPTED)
     except Transactions.ElementNotExistError as e:
-        return JSONResponse({"Error": "Transaction does not exist"},
-            status_code=status.HTTP_404_NOT_FOUND)
+        return JSONResponse({"Error": "Transaction does not exist"}, status_code=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return JSONResponse({"Error": e}, status_code=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+    
+    
+@router.get('/balance')
+def get_transactions_balance():
+    try:
+        balance = Transactions.get_balance() 
+        return balance
+    except Exception as e:
+        return JSONResponse({"Error": e},
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
