@@ -3,7 +3,7 @@ import { BankAPI } from '../api/BankAPI'
 import Transaction from './Transaction'
 
 
-function Transactions() {
+function Transactions(props) {
     const [transactions, setTransactions] = useState([])
 
     useEffect(() => {
@@ -15,11 +15,11 @@ function Transactions() {
     }, [])
 
     const deleteTransaction = async(transactionId) => {
-        console.log(transactionId);
-        // send delete to api
+        await BankAPI().deleteTransaction(transactionId)
 
-        // const transactionsData = await BankAPI().getTransactions()
-        // setTransactions(transactionsData.data)
+        const transactionsData = await BankAPI().getTransactions()
+        setTransactions(transactionsData.data)
+        props.callUpdateBalance()
     }
 
 

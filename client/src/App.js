@@ -33,8 +33,8 @@ function App() {
         <div className="App">
           <NavBar balance={balance}/>
           
-          <Route path="/" exact render={() => <Transactions />} />
-          <Route path="/operations" exact render={() => <Operations callUpdateBalance={callUpdateBalance}/>} />
+          <Route path="/" exact render={() => <Transactions callUpdateBalance={callUpdateBalance} />} />
+          <Route path="/operations" exact render={() => <Operations callUpdateBalance={callUpdateBalance} />} />
           <Route path="/Breakdown" exact render={() => <Breakdown />} />
         </div>
       </Router>
