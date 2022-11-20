@@ -13,7 +13,6 @@ def get_all_transactions():
         transactions = Transactions.get_all()
         return transactions
     except Exception as e:
-        print(e)
         return JSONResponse({"Error": str(e)},
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -47,6 +46,5 @@ def get_transactions_balance():
         balance = Transactions.get_balance() 
         return balance
     except Exception as e:
-        print(e)
         return JSONResponse({"Error": str(e)},
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)

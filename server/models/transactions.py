@@ -19,7 +19,6 @@ def get_all():
         charset="utf8",
         cursorclass=pymysql.cursors.DictCursor
     )
-
     query = "SELECT * FROM transactions"
     with connection.cursor() as cursor:
         cursor.execute(query)
@@ -36,7 +35,6 @@ def add(transaction):
     with connection.cursor() as cursor:
         cursor.execute(insert_query)
         connection.commit()
-        
         new_id = cursor.lastrowid
         transaction["id"] = new_id
         return transaction
@@ -63,7 +61,6 @@ def get_balance():
         charset="utf8",
         cursorclass=pymysql.cursors.DictCursor
     )
-
     query = "SELECT SUM(amount) as balance FROM transactions"
     with connection.cursor() as cursor:
         cursor.execute(query)
