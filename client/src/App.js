@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { BankAPI } from './api/BankAPI';
 
@@ -8,13 +8,23 @@ import NavBar from './components/NavBar';
 import Operations from './components/Operations';
 import Transactions from './components/Transactions';
 
+
 function App() {
   const [balance, setBalance] = useState(0)
 
+  useEffect(() => {
+    async function fetchData() {
+      const balance = await BankAPI().getBalance()
+      const balanceRes = balance.data.balance ? balance.data.balance : 0
+      setBalance(balanceRes)
+    }
+    fetchData();
+  }, [])
 
   const callUpdateBalance = async () => {
     const balance = await BankAPI().getBalance()
-    setBalance(balance.balance)
+    const balanceRes = balance.data.balance ? balance.data.balance : 0
+    setBalance(balanceRes)
   }
 
   return (
