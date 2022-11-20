@@ -1,0 +1,19 @@
+.card {
+    width: 60%;
+    margin: 1em;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.deposit {
+    color: green;
+    font-weight: bold;
+}
+
+.withdraw {
+    color: red;
+    font-weight: bold;
+}
