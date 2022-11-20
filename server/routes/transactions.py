@@ -17,7 +17,7 @@ def get_all_transactions():
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@router.post('/')
+@router.post('')
 async def add_transaction(request: Request):
     transaction = await request.json()
     try:
