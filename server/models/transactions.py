@@ -18,8 +18,8 @@ def get_all():
     
     
 def add(transaction):
-    insert_query = """INSERT INTO transactions values ({},'{}','{}')""".format(
-        transaction["amount"],
+    insert_query = """INSERT INTO transactions (amount, vendor, category) values ({},'{}','{}')""".format(
+        int(transaction["amount"]),
         transaction["vendor"],
         transaction["category"]
     )
@@ -48,10 +48,7 @@ def get_balance():
     with connection.cursor() as cursor:
         cursor.execute(query)
         return cursor.fetchone()
-        # balance = cursor.fetchone()['balance'] 
-        # if balance == None: 
-        #     return 0
-        # return balance
+
 
 
 class ElementNotExistError(Exception):
