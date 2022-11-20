@@ -1,0 +1,37 @@
+.form-container {
+    width: 40%;
+    margin: 3em;
+    /* display: flex;
+    justify-content: center; */
+    /* align-items: center; */
+}
+
+.transaction-details {
+    display: inline-flex;
+    display: flex;
+    justify-content: center;
+    margin: 1em;    
+    border-radius: 5px;
+    padding: 0.4em;
+}
+
+.trans-btn {
+    margin: 0.4em;
+    border-radius: 5px;
+    padding: 0.4em;
+    color: #023875;
+    font-weight: bold;
+    width: 5.5em;
+}
+
+.deposit-btn {
+    margin-left: 1.8em;
+}
+
+
+h4 {
+    font-weight: bold;
+    color: whitesmoke;
+    margin-left: 1em;
+    text-shadow: 2px 2px 2px black;
+}

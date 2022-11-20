@@ -1,0 +1,31 @@
+h2 {
+    font-weight: bold;
+    color: whitesmoke;
+    margin-left: 2em;
+    margin-bottom: 0.8em;
+    text-shadow: 2px 2px 2px black;
+}
+
+.break-background {
+    background-color: rgb(184, 244, 244);
+    width: 11em;
+    border-radius: 1em;
+    margin-left: 0.5em;
+    text-align: center;
+    padding: 0.2em;
+    border: 1px solid black;
+    /* box-shadow: 2px #000; */
+}
+
+.break-item {
+    color: whitesmoke;
+    font-size: 1.3em;
+    margin: 1em;
+    margin-left: 1.5em;
+    /* border: 1px black; */
+    font-weight: bold;
+    text-shadow:-1px 1px 1px #000,
+                1px 1px 1px #000,
+                1px -1px 1px #000,
+                -0.5px -0.5px 1px #000;
+}
