@@ -11,13 +11,23 @@ connection = pymysql.connect(
 
 
 def get_all():
+    connection = pymysql.connect(
+        host="localhost",
+        user="root",
+        password="",
+        db="bank",
+        charset="utf8",
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
     query = "SELECT * FROM transactions"
     with connection.cursor() as cursor:
         cursor.execute(query)
-        return cursor.fetchall()
-    
+        result = cursor.fetchall()
+        return result
     
 def add(transaction):
+    connection.ping()
     insert_query = """INSERT INTO transactions (amount, vendor, category) values ({},'{}','{}')""".format(
         int(transaction["amount"]),
         transaction["vendor"],
@@ -33,6 +43,7 @@ def add(transaction):
         
     
 def delete(id):
+    connection.ping()
     query = "DELETE FROM transactions where id={}".format(id)
     with connection.cursor() as cursor:
         cursor.execute(query)
@@ -44,10 +55,20 @@ def delete(id):
         
         
 def get_balance():
+    connection = pymysql.connect(
+        host="localhost",
+        user="root",
+        password="",
+        db="bank",
+        charset="utf8",
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
     query = "SELECT SUM(amount) as balance FROM transactions"
     with connection.cursor() as cursor:
         cursor.execute(query)
-        return cursor.fetchone()
+        balance =  cursor.fetchone()
+        return balance
 
 
 

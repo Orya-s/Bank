@@ -10,5 +10,5 @@ def get_categories_breakdown():
         breakdown = Categories.get_breakdown()
         return breakdown
     except Exception as e:
-        return JSONResponse({"Error": e},
+        return JSONResponse({"Error": str(e)},
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -13,7 +13,8 @@ def get_all_transactions():
         transactions = Transactions.get_all()
         return transactions
     except Exception as e:
-        return JSONResponse({"Error": e},
+        print(e)
+        return JSONResponse({"Error": str(e)},
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -37,7 +38,7 @@ def delete_transaction(id):
     except Transactions.ElementNotExistError as e:
         return JSONResponse({"Error": "Transaction does not exist"}, status_code=status.HTTP_404_NOT_FOUND)
     except Exception as e:
-        return JSONResponse({"Error": e}, status_code=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+        return JSONResponse({"Error": str(e)}, status_code=status.HTTP_500_INTERNAL_SERVER_ERROR) 
     
     
 @router.get('/balance')
@@ -46,5 +47,6 @@ def get_transactions_balance():
         balance = Transactions.get_balance() 
         return balance
     except Exception as e:
-        return JSONResponse({"Error": e},
+        print(e)
+        return JSONResponse({"Error": str(e)},
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
