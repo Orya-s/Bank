@@ -5,11 +5,21 @@ const baseURL = `http://localhost:8000/transactions`
 export function BankAPI() {
 
     function getTransactions() {
-        return axios.get(baseURL)
+        try {
+            return axios.get(baseURL)
+        }
+        catch (err) {
+            console.warn(err);
+        }
     }
 
     function getBalance() {
-        return axios.get(`${baseURL}/balance`)
+        try {
+            return axios.get(`${baseURL}/balance`)
+        }
+        catch (err) {
+            console.warn(err);
+        }
     }
 
     function sendTransaction(transaction) {
@@ -21,12 +31,31 @@ export function BankAPI() {
         }
     }
 
+    function deleteTransaction(transactionId) {
+        try {
+            return axios.delete(`${baseURL}/${transactionId}`)
+        }
+        catch (err) {
+            console.warn(err);
+        }
+    }
+
+    function getBreakdown() {
+        try {
+            return axios.get(`http://localhost:8000/categories_breakdown`)
+        }
+        catch (err) {
+            console.warn(err);
+        }
+    }
 
 
     return {
         getTransactions,
         getBalance,
-        sendTransaction
+        sendTransaction,
+        deleteTransaction,
+        getBreakdown
     }
 }
 
