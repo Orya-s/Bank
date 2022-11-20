@@ -31,6 +31,7 @@ function App() {
     <div className="App">
       <Router> 
         <div className="App">
+          <div id="background"></div>
           <NavBar balance={balance}/>
           
           <Route path="/" exact render={() => <Transactions callUpdateBalance={callUpdateBalance} />} />
