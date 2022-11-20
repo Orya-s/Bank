@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BankAPI } from '../api/BankAPI'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/Operations.css'
+
 
 
 function Operations(props) {
@@ -36,12 +39,13 @@ function Operations(props) {
 
 
     return ( 
-        <div>
-            <input type='number' min='0' placeholder='Transaction amount' name='amount' value={transactionData.amount} onChange={e => handleChange(e.target.name, e.target.value)}></input>
-            <input type='text' placeholder='Transaction vendor' name='vendor' value={transactionData.vendor} onChange={e => handleChange(e.target.name, e.target.value)}></input>
-            <input type='text' placeholder='Transaction category' name='category' value={transactionData.category} onChange={e => handleChange(e.target.name, e.target.value)}></input>
-            <button onClick={e => addTransaction(e)} name='deposit' className='deposit-btn'>Deposit</button>
-            <button onClick={e => addTransaction(e)} name='withdraw' className='withdraw-btn'>Withdraw</button>
+        <div className='form-container'>
+            <h4>Transaction Details</h4>
+            <input type='number' min='0' placeholder='Amount' name='amount' value={transactionData.amount} onChange={e => handleChange(e.target.name, e.target.value)} className='transaction-details'></input>
+            <input type='text' placeholder='Vendor' name='vendor' value={transactionData.vendor} onChange={e => handleChange(e.target.name, e.target.value)} className='transaction-details'></input>
+            <input type='text' placeholder='Category' name='category' value={transactionData.category} onChange={e => handleChange(e.target.name, e.target.value)} className='transaction-details'></input>
+            <button onClick={e => addTransaction(e)} name='deposit' className='deposit-btn trans-btn'>Deposit</button>
+            <button onClick={e => addTransaction(e)} name='withdraw' className='withdraw-btn trans-btn'>Withdraw</button>
         </div>
      );
 }
