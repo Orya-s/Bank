@@ -8,7 +8,7 @@ function Balance(props) {
 
     return ( 
         <div className={getClass()}>
-            Balance: {props.balance}
+            <span className='balance-title'>Balance:</span> {props.balance} $
         </div>
      );
 }

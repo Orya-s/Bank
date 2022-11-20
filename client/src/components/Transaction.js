@@ -16,7 +16,7 @@ function Transaction(props) {
     return ( 
         <div className='card-container'>
             <Card className='card'>
-                <Card.Header as="h5" className={getClass()}>{props.data.amount}</Card.Header>
+                <Card.Header as="h5" className={getClass()}>{props.data.amount} $</Card.Header>
                 <Card.Body>
                     <Card.Title>{props.data.category}</Card.Title>
                     <Card.Text>
