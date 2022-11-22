@@ -1,37 +1,34 @@
 import pymysql
 
-connection = pymysql.connect(
-    host="localhost",
-    user="root",
-    password="",
-    db="bank",
-    charset="utf8",
-    cursorclass=pymysql.cursors.DictCursor
-)
+
+def conn():
+    try:
+        return pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="bank",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor
+        )
+    except:
+        print("Error connectiong to database")
 
 
 def get_all():
-    connection = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="",
-        db="bank",
-        charset="utf8",
-        cursorclass=pymysql.cursors.DictCursor
-    )
     query = "SELECT * FROM transactions"
-    with connection.cursor() as cursor:
+    with conn().cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchall()
         return result
     
 def add(transaction):
-    connection.ping()
     insert_query = """INSERT INTO transactions (amount, vendor, category) values ({},'{}','{}')""".format(
         int(transaction["amount"]),
         transaction["vendor"],
         transaction["category"]
     )
+    connection = conn()
     with connection.cursor() as cursor:
         cursor.execute(insert_query)
         connection.commit()
@@ -41,8 +38,8 @@ def add(transaction):
         
     
 def delete(id):
-    connection.ping()
     query = "DELETE FROM transactions where id={}".format(id)
+    connection = conn()
     with connection.cursor() as cursor:
         cursor.execute(query)
         if cursor.rowcount > 0:
@@ -53,16 +50,8 @@ def delete(id):
         
         
 def get_balance():
-    connection = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="",
-        db="bank",
-        charset="utf8",
-        cursorclass=pymysql.cursors.DictCursor
-    )
     query = "SELECT SUM(amount) as balance FROM transactions"
-    with connection.cursor() as cursor:
+    with conn().cursor() as cursor:
         cursor.execute(query)
         balance =  cursor.fetchone()
         return balance
